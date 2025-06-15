@@ -1,0 +1,40 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:davma}",
+            "name": "Debug Davma",
+            "program": "${workspaceFolder:davma}/.build/debug/Davma",
+            "preLaunchTask": "swift: Build Debug Davma"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:davma}",
+            "name": "Release Davma",
+            "program": "${workspaceFolder:davma}/.build/release/Davma",
+            "preLaunchTask": "swift: Build Release Davma"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:davma}",
+            "name": "Debug davma",
+            "program": "${workspaceFolder:davma}/.build/debug/davma",
+            "preLaunchTask": "swift: Build Debug davma"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:davma}",
+            "name": "Release davma",
+            "program": "${workspaceFolder:davma}/.build/release/davma",
+            "preLaunchTask": "swift: Build Release davma"
+        }
+    ]
+}

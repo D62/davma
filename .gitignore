@@ -1,0 +1,24 @@
+# macOS system files
+.DS_Store
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# Xcode project/workspace (optional if you open with Xcode)
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+DerivedData/
+
+# Publish output
+Output/
+.publish/
+
+# Optional: ignore logs
+*.log
+
+# Ignore temporary files
+*.swp
+*.tmp
