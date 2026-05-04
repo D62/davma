@@ -136,10 +136,6 @@
       border-bottom: 1px solid rgba(239,237,232,0.25);
       transition: border-color 0.2s, color 0.2s;
     }
-    .summary a:hover {
-      color: var(--gold);
-      border-color: var(--gold);
-    }
 
     /* ─── LINKS ──────────────────────────────────────────────── */
     .links {
@@ -180,7 +176,6 @@
     .link:nth-child(6) { animation-delay: 0.95s; }
     .link:nth-child(7) { animation-delay: 1.05s; }
 
-    /* Gold line sweep on hover */
     .link::after {
       content: '';
       position: absolute;
@@ -189,7 +184,6 @@
       background: var(--gold);
       transition: width 0.4s var(--ease);
     }
-    .link:hover::after { width: 100%; }
 
     .link-icon {
       width: 18px; height: 18px;
@@ -197,7 +191,6 @@
       color: var(--muted);
       transition: color 0.25s;
     }
-    .link:hover .link-icon { color: var(--gold); }
 
     .link-name {
       font-family: var(--ff-display);
@@ -208,7 +201,6 @@
       transition: color 0.25s;
       flex: 1;
     }
-    .link:hover .link-name { color: var(--gold); }
 
     .link-tag {
       font-size: 0.58rem;
@@ -247,10 +239,6 @@
       padding-right: 4px;
       transition: color 0.25s, transform 0.25s;
     }
-    .link:hover .link-arrow {
-      color: var(--gold);
-      transform: translate(2px, -2px);
-    }
 
     /* ─── BOTTOM ─────────────────────────────────────────────── */
     .bottom {
@@ -282,7 +270,7 @@
         linear-gradient(to top, var(--black) 0%, transparent 20%);
     }
 
-    /* Transparent overlay — blocks right-click / drag on the photo */
+
     .right::after {
       content: '';
       position: absolute; inset: 0; z-index: 2;
@@ -311,7 +299,6 @@
       padding: 0;
       transition: color 0.2s;
     }
-    .contact-trigger:hover { color: var(--gold); }
 
     /* ─── MODAL ──────────────────────────────────────────────── */
     .modal-overlay {
@@ -359,7 +346,6 @@
       padding: 0; line-height: 1;
       transition: color 0.2s;
     }
-    .modal-close:hover { color: var(--white); }
 
     .form-field {
       margin-bottom: 1.25rem;
@@ -411,7 +397,6 @@
       padding: 1rem;
       transition: opacity 0.2s;
     }
-    .form-submit:hover { opacity: 0.85; }
     .form-submit:disabled { opacity: 0.4; cursor: not-allowed; }
 
     .form-status {
@@ -425,16 +410,43 @@
     .form-status.err { color: #ff6b6b; }
 
     /* ─── MOBILE ─────────────────────────────────────────────── */
+    /* Disable touch highlight on all interactive elements */
+    a, button, input, textarea { -webkit-tap-highlight-color: transparent; }
+
+    /* Hover effects only on real pointer devices, not touch */
+    @media (hover: hover) {
+      .link:hover::after { width: 100%; }
+      .link:hover .link-icon { color: var(--gold); }
+      .link:hover .link-name { color: var(--gold); }
+      .link:hover .link-arrow { color: var(--gold); transform: translate(2px, -2px); }
+      .summary a:hover { color: var(--gold); border-color: var(--gold); }
+      .contact-trigger:hover { color: var(--gold); }
+      .modal-close:hover { color: var(--white); }
+      .form-submit:hover { opacity: 0.85; }
+    }
+
     @media (max-width: 700px) {
+      html { height: auto; }
       body {
         grid-template-columns: 1fr;
-        overflow: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: auto;
       }
       .right { display: none; }
       .left {
-        min-height: 100vh;
-        padding: 12vw 8vw;
-        justify-content: center;
+        min-height: 100dvh;
+        padding: 10vw 8vw 8vw;
+        justify-content: flex-start;
+        padding-top: max(10vw, env(safe-area-inset-top, 10vw));
+      }
+    }
+
+    /* Landscape on small phones */
+    @media (max-width: 700px) and (orientation: landscape) {
+      .left {
+        min-height: auto;
+        padding: 6vw 8vw;
       }
     }
   </style>
@@ -463,7 +475,6 @@
 
     <nav class="links">
 
-      <!-- ── Pro (alphabetical) ── -->
       <button class="link" id="contactTrigger">
         <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
@@ -499,10 +510,8 @@
         <span class="link-arrow">↗</span>
       </a>
 
-      <!-- ── separator ── -->
       <div class="group-sep"><span>Also</span></div>
 
-      <!-- ── Casual (alphabetical) ── -->
       <a href="https://www.instagram.com/d62" class="link" target="_blank" rel="noopener">
         <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
@@ -526,8 +535,6 @@
     <p class="bottom">dav.ma &nbsp;·&nbsp; © 2025–2026 David Mahieux</p>
 
   </div>
-
-  <!-- ─── CONTACT MODAL ─── -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <p class="modal-label">Contact</p>
@@ -537,7 +544,6 @@
       <form id="contactForm"
             action="https://formspree.io/f/xeeneddk"
             method="POST">
-
         <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
 
         <div class="form-field">
